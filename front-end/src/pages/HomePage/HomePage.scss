@@ -1,4 +1,4 @@
-@use '../styles/variables' as *;
+@use '../../styles/variables' as *;
 
 .home-page {
   margin: 0 auto;
@@ -78,13 +78,15 @@
     animation: fadeIn 0.6s ease;
 
     > * {
-      flex: 0 1 calc(16.666% - 17px);
+      flex: 1 1 calc(16.666% - 17px);
+      max-width: calc(16.666% - 17px);
       min-width: 200px;
     }
 
     @include responsive($breakpoint-xl) {
       > * {
-        flex: 0 1 calc(20% - 16px);
+        flex: 1 1 calc(20% - 16px);
+        max-width: calc(20% - 16px);
         min-width: 180px;
       }
     }
@@ -93,7 +95,8 @@
       gap: 18px;
       
       > * {
-        flex: 0 1 calc(25% - 14px);
+        flex: 1 1 calc(25% - 14px);
+        max-width: calc(25% - 14px);
         min-width: 180px;
       }
     }
@@ -102,7 +105,8 @@
       gap: 16px;
       
       > * {
-        flex: 0 1 calc(33.333% - 11px);
+        flex: 1 1 calc(33.333% - 11px);
+        max-width: calc(33.333% - 11px);
         min-width: 160px;
       }
     }
@@ -111,7 +115,8 @@
       gap: 16px;
       
       > * {
-        flex: 0 1 calc(50% - 8px);
+        flex: 1 1 calc(50% - 8px);
+        max-width: calc(50% - 8px);
         min-width: 140px;
       }
     }

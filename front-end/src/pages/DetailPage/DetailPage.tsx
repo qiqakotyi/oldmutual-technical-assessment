@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useCountryDetail } from '../hooks/useCountryDetail';
-import { Loader } from '../components/Loader';
-import { ErrorMessage } from '../components/ErrorMessage';
+import { useCountryDetail } from '../../hooks/useCountryDetail';
+import { Loader } from '../../components/Loader';
+import { ErrorMessage } from '../../components/ErrorMessage';
 import './DetailPage.scss';
 
 export const DetailPage = () => {

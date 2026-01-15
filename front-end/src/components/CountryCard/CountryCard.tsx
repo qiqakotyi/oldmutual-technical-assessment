@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import type { Country } from '../types/Country';
+import type { Country } from '../../types/Country';
 import './CountryCard.scss';
 
 interface CountryCardProps {

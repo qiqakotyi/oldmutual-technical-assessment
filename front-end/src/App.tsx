@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { HomePage } from './pages/HomePage';
-import { DetailPage } from './pages/DetailPage';
+import { HomePage } from './pages/HomePage/index';
+import { DetailPage } from './pages/DetailPage/index';
 import './App.scss';
 
 function App() {

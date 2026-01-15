@@ -25,7 +25,8 @@ describe('HomePage', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    expect(screen.getByText('...')).toBeInTheDocument();
+    expect(screen.getAllByRole('generic', { class: /skeleton/ }).length).toBeGreaterThan(0);
   });
 
   it('should display countries after loading', async () => {
@@ -69,7 +70,8 @@ describe('HomePage', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText(/explore 2 countries/i)).toBeInTheDocument();
+      expect(screen.getByText('2')).toBeInTheDocument();
+      expect(screen.getByText(/countries and their flags/i)).toBeInTheDocument();
     });
   });
 });

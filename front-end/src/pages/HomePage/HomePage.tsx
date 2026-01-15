@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react';
-import { useCountries } from '../hooks/useCountries';
-import { CountryCard } from '../components/CountryCard';
-import { SkeletonGrid } from '../components/SkeletonCard';
-import { ErrorMessage } from '../components/ErrorMessage';
+import { useCountries } from '../../hooks/useCountries';
+import { CountryCard } from '../../components/CountryCard';
+import { SkeletonGrid } from '../../components/SkeletonCard';
+import { ErrorMessage } from '../../components/ErrorMessage';
 import './HomePage.scss';
 
 const ITEMS_PER_PAGE = 24;
