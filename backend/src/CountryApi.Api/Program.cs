@@ -10,9 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new() 
-    { 
-        Title = "Country API", 
+    c.SwaggerDoc("v1", new()
+    {
+        Title = "Country API",
         Version = "v1",
         Description = "API for retrieving country information"
     });

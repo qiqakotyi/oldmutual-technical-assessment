@@ -15,7 +15,7 @@ public class CountryRepository : ICountryRepository
 
     private const string AllCountriesCacheKey = "all_countries";
     private static readonly TimeSpan CacheDuration = TimeSpan.FromHours(1);
-    
+
     // Specify the fields we need from the API
     private const string FieldsQuery = "?fields=name,population,capital,flags";
 

@@ -71,7 +71,7 @@ jobs:
 
       - name: Code quality check
         run: |
-          dotnet format --verify-no-changes --verbosity diagnostic
+          dotnet format --verify-no-changes --verbosity normal
 
   package-staging:
     needs: build-and-test
