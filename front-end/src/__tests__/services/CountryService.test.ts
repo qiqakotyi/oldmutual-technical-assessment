@@ -32,6 +32,12 @@ describe('countryService', () => {
 
       await expect(countryService.getAllCountries()).rejects.toThrow('Failed to fetch countries');
     });
+
+    it('should handle network errors', async () => {
+      mockFetch.mockRejectedValueOnce(new Error('Network failure'));
+
+      await expect(countryService.getAllCountries()).rejects.toThrow('Network failure');
+    });
   });
 
   describe('getCountryByName', () => {

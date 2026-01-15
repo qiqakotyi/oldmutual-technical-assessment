@@ -18,6 +18,8 @@ export default defineConfig({
         'src/__tests__/**',
         'src/domain/models/**',
         'src/domain/services/**',
+        '**/index.ts',
+        'src/types/**',
       ],
       all: true,
       thresholds: {
