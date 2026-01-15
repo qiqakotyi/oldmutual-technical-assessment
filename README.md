@@ -178,20 +178,6 @@ npm run preview     # Preview production build locally
 - SCSS (styling with variables and mixins)
 - Vitest + React Testing Library (testing)
 - Modern React patterns (hooks, context, services)
-
-### Features
-
-- ✅ Responsive grid layout (6 columns on desktop, responsive breakpoints)
-- ✅ Search functionality (filter by country name or capital)
-- ✅ Pagination (24 countries per page)
-- ✅ Skeleton loading states for better UX
-- ✅ Click any flag to view detailed country information
-- ✅ Country details: name, flag, population, capital, region, subregion, area
-- ✅ Modern UI with SCSS styling (gradient headers, shadows, animations)
-- ✅ 95%+ test coverage (33 tests)
-- ✅ Type-safe with TypeScript
-- ✅ Clean component architecture (types, services, hooks, components, pages)
-
 ---
 
 **Assessment Date:** 15 January 2026
