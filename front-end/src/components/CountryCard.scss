@@ -1,0 +1,84 @@
+@import '../styles/variables';
+
+.country-card {
+  @include card;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid $border-color;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+    border-color: $primary-color;
+  }
+
+  &:active {
+    transform: translateY(-2px);
+  }
+
+  .flag-container {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: $background;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(to right, $primary-color, $primary-hover);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  }
+
+  &:hover .flag-container::after {
+    opacity: 1;
+  }
+
+  .flag-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover .flag-image {
+    transform: scale(1.05);
+  }
+
+  .country-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .country-name {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 1.4;
+  }
+
+  .country-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: $text-secondary;
+    font-size: 0.875rem;
+
+    .meta-icon {
+      font-size: 1rem;
+    }
+  }
+}

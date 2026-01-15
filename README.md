@@ -47,7 +47,54 @@ dotnet test --collect:"XPlat Code Coverage" --settings tests/CountryApi.UnitTest
 
 ## Front-end Setup
 
-_To be added_
+### Prerequisites
+
+- [Node.js 20.x](https://nodejs.org/) or later
+- npm (comes with Node.js)
+
+### Running the Application
+
+```bash
+cd front-end
+npm install
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+### Running Tests
+
+```bash
+cd front-end
+npm run test         # Run tests in watch mode
+npm run test:run     # Run tests once
+npm run test:coverage # Run tests with coverage report
+```
+
+### Building for Production
+
+```bash
+cd front-end
+npm run build
+npm run preview     # Preview production build locally
+```
+
+### Tech Stack
+
+- React 19 + TypeScript
+- Vite (build tool)
+- React Router (navigation)
+- Vitest + React Testing Library (testing)
+- Clean Architecture pattern
+
+### Features
+
+- ✅ Responsive grid layout showing country flags
+- ✅ Click any flag to view detailed country information
+- ✅ Country details: name, population, capital, region, area
+- ✅ 90%+ test coverage
+- ✅ Type-safe with TypeScript
+- ✅ Clean architecture (domain, infrastructure, presentation layers)
 
 ---
 
