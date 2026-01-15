@@ -22,7 +22,17 @@ This project follows Clean Architecture principles with four layers:
 │   │   └── CountryApi.Infrastructure/ # External integrations
 │   └── tests/
 │       └── CountryApi.UnitTests/      # Unit tests
-└── front-end/        # Frontend application
+└── front-end/        # React + TypeScript frontend
+    ├── src/
+    │   ├── components/               # Reusable UI components
+    │   ├── pages/                    # Route pages (HomePage, DetailPage)
+    │   ├── hooks/                    # Custom React hooks
+    │   ├── services/                 # API client services
+    │   ├── types/                    # TypeScript type definitions
+    │   ├── styles/                   # SCSS variables and global styles
+    │   └── __tests__/                # Test files
+    ├── public/                       # Static assets
+    └── dist/                         # Production build output
 ```
 
 ## Technologies
@@ -176,4 +186,4 @@ npm run preview     # Preview production build locally
 
 ---
 
-**Assessment Date:** January 2026
+**Assessment Date:** 15 January 2026
