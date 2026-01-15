@@ -7,9 +7,10 @@ on:
       - 'backend/**'
       - '.github/workflows/backend-ci.yml'
   pull_request:
-    branches: [main]
+    branches: [main, develop]
     paths:
       - 'backend/**'
+      - '.github/workflows/backend-ci.yml'
 
 env:
   DOTNET_VERSION: '8.0.x'
@@ -50,10 +51,10 @@ jobs:
           name: coverage-report
           path: backend/TestResults/**/coverage.cobertura.xml
 
-  package:
+  code-quality:
     needs: build-and-test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'pull_request'
     
     defaults:
       run:
@@ -68,14 +69,72 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Publish application
+      - name: Code quality check
+        run: |
+          dotnet format --verify-no-changes --verbosity diagnostic
+
+  package-staging:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Publish application (Staging)
         run: |
           dotnet publish src/CountryApi.Api/CountryApi.Api.csproj \
             --configuration Release \
             --output ./publish
 
-      - name: Upload build artifact
+      - name: Upload staging artifact
         uses: actions/upload-artifact@v4
         with:
-          name: backend-package
+          name: backend-staging-package
           path: backend/publish
+          retention-days: 7
+
+  package-production:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Publish application (Production)
+        run: |
+          dotnet publish src/CountryApi.Api/CountryApi.Api.csproj \
+            --configuration Release \
+            --output ./publish
+
+      - name: Upload production artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-production-package
+          path: backend/publish
+
+      - name: Create release tag
+        if: startsWith(github.event.head_commit.message, 'Release')
+        run: |
+          echo "Creating release tag based on commit message"
