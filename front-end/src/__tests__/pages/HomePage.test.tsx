@@ -248,7 +248,6 @@ describe('HomePage', () => {
       expect(screen.getByText('Country 1')).toBeInTheDocument();
     });
 
-    // Go to page 2
     const nextButton = screen.getByText('Next →');
     fireEvent.click(nextButton);
 
@@ -256,11 +255,9 @@ describe('HomePage', () => {
       expect(screen.getByText('Country 25')).toBeInTheDocument();
     });
 
-    // Search for something
     const searchInput = screen.getByPlaceholderText(/search by country name or capital/i);
     fireEvent.change(searchInput, { target: { value: 'Country 1' } });
 
-    // Should be back on page 1
     await waitFor(() => {
       expect(screen.getByText('Country 1')).toBeInTheDocument();
       expect(screen.queryByText('Country 25')).not.toBeInTheDocument();
