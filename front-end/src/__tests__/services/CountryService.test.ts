@@ -1,7 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { countryService } from '../../services/countryService';
 
-global.fetch = vi.fn();
+const mockFetch = vi.fn();
+global.fetch = mockFetch as unknown as typeof fetch;
 
 describe('countryService', () => {
   beforeEach(() => {
@@ -14,10 +15,10 @@ describe('countryService', () => {
         { name: 'Test', flag: 'test.svg', population: 1000, capital: 'Capital' },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      mockFetch.mockResolvedValueOnce({
         ok: true,
         json: async () => mockData,
-      });
+      } as Response);
 
       const result = await countryService.getAllCountries();
       expect(result).toEqual(mockData);
@@ -25,9 +26,9 @@ describe('countryService', () => {
     });
 
     it('should throw error when fetch fails', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      mockFetch.mockResolvedValueOnce({
         ok: false,
-      });
+      } as Response);
 
       await expect(countryService.getAllCountries()).rejects.toThrow('Failed to fetch countries');
     });
@@ -43,10 +44,10 @@ describe('countryService', () => {
         region: 'Region',
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      mockFetch.mockResolvedValueOnce({
         ok: true,
         json: async () => mockData,
-      });
+      } as Response);
 
       const result = await countryService.getCountryByName('Test');
       expect(result).toEqual(mockData);
@@ -54,9 +55,9 @@ describe('countryService', () => {
     });
 
     it('should throw error when fetch fails', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      mockFetch.mockResolvedValueOnce({
         ok: false,
-      });
+      } as Response);
 
       await expect(countryService.getCountryByName('Test')).rejects.toThrow('Failed to fetch country: Test');
     });
