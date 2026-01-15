@@ -2,6 +2,14 @@
 
 A full-stack application that provides country information through a RESTful API.
 
+## Screenshots
+
+### Desktop View
+![Desktop View](assets/desktop-view.png)
+
+### Mobile View
+![Mobile View](assets/mobile-view.png)
+
 ## Architecture
 
 This project follows Clean Architecture principles with four layers:
