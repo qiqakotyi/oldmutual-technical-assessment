@@ -27,9 +27,9 @@ public class CountriesController : ControllerBase
     public async Task<ActionResult<IEnumerable<CountryDto>>> GetAllCountries()
     {
         _logger.LogInformation("Retrieving all countries");
-        
+
         var countries = await _countryService.GetAllCountriesAsync();
-        
+
         return Ok(countries);
     }
 
@@ -43,7 +43,7 @@ public class CountriesController : ControllerBase
     public async Task<ActionResult<CountryDetailsDto>> GetCountryByName(string name)
     {
         _logger.LogInformation("Retrieving country: {CountryName}", name);
-        
+
         var country = await _countryService.GetCountryByNameAsync(name);
 
         if (country is null)

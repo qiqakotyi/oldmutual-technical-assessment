@@ -16,7 +16,7 @@ public class CountryService : ICountryService
     public async Task<IEnumerable<CountryDto>> GetAllCountriesAsync()
     {
         var countries = await _countryRepository.GetAllCountriesAsync();
-        
+
         return countries.Select(c => new CountryDto(
             c.Name,
             c.Flag
@@ -26,7 +26,7 @@ public class CountryService : ICountryService
     public async Task<CountryDetailsDto?> GetCountryByNameAsync(string name)
     {
         var country = await _countryRepository.GetCountryByNameAsync(name);
-        
+
         if (country is null)
             return null;
 
