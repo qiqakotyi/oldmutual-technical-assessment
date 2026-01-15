@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { countryService } from '../../services/countryService';
 
 const mockFetch = vi.fn();
-global.fetch = mockFetch as unknown as typeof fetch;
+globalThis.fetch = mockFetch as unknown as typeof fetch;
 
 describe('countryService', () => {
   beforeEach(() => {
@@ -22,7 +22,7 @@ describe('countryService', () => {
 
       const result = await countryService.getAllCountries();
       expect(result).toEqual(mockData);
-      expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('/countries'));
+      expect(globalThis.fetch).toHaveBeenCalledWith(expect.stringContaining('/countries'));
     });
 
     it('should throw error when fetch fails', async () => {
@@ -57,7 +57,7 @@ describe('countryService', () => {
 
       const result = await countryService.getCountryByName('Test');
       expect(result).toEqual(mockData);
-      expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('/countries/Test'));
+      expect(globalThis.fetch).toHaveBeenCalledWith(expect.stringContaining('/countries/Test'));
     });
 
     it('should throw error when fetch fails', async () => {

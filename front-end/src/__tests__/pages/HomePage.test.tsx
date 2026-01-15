@@ -37,7 +37,8 @@ describe('HomePage', () => {
     );
 
     expect(screen.getByText('...')).toBeInTheDocument();
-    expect(screen.getAllByRole('generic', { class: /skeleton/ }).length).toBeGreaterThan(0);
+    const skeletonCards = document.querySelectorAll('.skeleton-card');
+    expect(skeletonCards.length).toBeGreaterThan(0);
   });
 
   it('should display countries after loading', async () => {
