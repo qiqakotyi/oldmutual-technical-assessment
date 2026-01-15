@@ -30,7 +30,7 @@ This project follows Clean Architecture principles with four layers:
 │   │   └── CountryApi.Infrastructure/ # External integrations
 │   └── tests/
 │       └── CountryApi.UnitTests/      # Unit tests
-└── front-end/        # React + TypeScript frontend
+└── frontend/         # React + TypeScript frontend
     ├── src/
     │   ├── components/               # Reusable UI components
     │   ├── pages/                    # Route pages (HomePage, DetailPage)
@@ -115,7 +115,7 @@ View the HTML coverage report at: `backend/tests/CountryApi.UnitTests/TestResult
 
 **Test Coverage:** 80%+ across statements, branches, functions, and lines
 
-## Front-end Setup
+## Frontend Setup
 
 ### Prerequisites
 
@@ -126,7 +126,7 @@ View the HTML coverage report at: `backend/tests/CountryApi.UnitTests/TestResult
 
 The frontend expects the backend API to be running. By default, it connects to `http://localhost:5145`.
 
-To change the API URL, create a `.env` file in the `front-end` directory:
+To change the API URL, create a `.env` file in the `frontend` directory:
 
 ```bash
 VITE_API_URL=http://localhost:5145
@@ -137,7 +137,7 @@ VITE_API_URL=http://localhost:5145
 **Important:** Start the backend API first (see Backend Setup above)
 
 ```bash
-cd front-end
+cd frontend
 npm install
 npm run dev
 ```
@@ -147,7 +147,7 @@ The application will be available at `http://localhost:5173`
 ### Running Tests
 
 ```bash
-cd front-end
+cd frontend
 npm run test         # Run tests in watch mode
 npm run test:run     # Run tests once
 npm run test:coverage # Run tests with coverage report
@@ -158,14 +158,14 @@ npm run test:coverage # Run tests with coverage report
 ### Linting
 
 ```bash
-cd front-end
+cd frontend
 npm run lint        # Check for code quality issues
 ```
 
 ### Building for Production
 
 ```bash
-cd front-end
+cd frontend
 npm run build
 npm run preview     # Preview production build locally
 ```
