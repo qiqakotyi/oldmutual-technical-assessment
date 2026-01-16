@@ -153,7 +153,7 @@ npm run test:run     # Run tests once
 npm run test:coverage # Run tests with coverage report
 ```
 
-**Test Coverage:** 95%+ across statements, branches, functions, and lines (33 passing tests)
+**Test Coverage:** 91%+ statements, 88%+ branches, 82%+ functions, 95%+ lines (47 passing tests)
 
 ### Linting
 
@@ -174,7 +174,8 @@ npm run preview     # Preview production build locally
 
 - React 19 + TypeScript
 - Vite (build tool)
-- React Router (navigation)
+- React Router (navigation with lazy loading)
+- TanStack Query (data fetching & caching)
 - SCSS (styling with variables and mixins)
 - Vitest + React Testing Library (testing)
 - Modern React patterns (hooks, context, services)

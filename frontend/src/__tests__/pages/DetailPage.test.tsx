@@ -1,8 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { DetailPage } from '../../pages/DetailPage';
 import { countryService } from '../../services/countryService';
+import { renderWithClient } from '../test-utils';
 
 const mockCountryDetail = {
   name: 'South Africa',
@@ -24,7 +25,7 @@ describe('DetailPage', () => {
       () => new Promise(() => {}) // Never resolves
     );
 
-    render(
+    renderWithClient(
       <MemoryRouter initialEntries={['/country/South%20Africa']}>
         <Routes>
           <Route path="/country/:countryName" element={<DetailPage />} />
@@ -38,7 +39,7 @@ describe('DetailPage', () => {
   it('should display country details after loading', async () => {
     vi.spyOn(countryService, 'getCountryByName').mockResolvedValue(mockCountryDetail);
 
-    render(
+    renderWithClient(
       <MemoryRouter initialEntries={['/country/South%20Africa']}>
         <Routes>
           <Route path="/country/:countryName" element={<DetailPage />} />
@@ -58,7 +59,7 @@ describe('DetailPage', () => {
       new Error('Country not found')
     );
 
-    render(
+    renderWithClient(
       <MemoryRouter initialEntries={['/country/InvalidCountry']}>
         <Routes>
           <Route path="/country/:countryName" element={<DetailPage />} />
@@ -74,7 +75,7 @@ describe('DetailPage', () => {
   it('should format population number correctly', async () => {
     vi.spyOn(countryService, 'getCountryByName').mockResolvedValue(mockCountryDetail);
 
-    render(
+    renderWithClient(
       <MemoryRouter initialEntries={['/country/South%20Africa']}>
         <Routes>
           <Route path="/country/:countryName" element={<DetailPage />} />
