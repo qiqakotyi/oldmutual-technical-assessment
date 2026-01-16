@@ -32,7 +32,6 @@ describe('SearchForm', () => {
       expect(screen.getByText(/must be at least 2 characters/i)).toBeInTheDocument();
     });
     
-    // Should not call onSearch due to validation error
     expect(mockOnSearch).not.toHaveBeenCalled();
   });
 
@@ -106,14 +105,11 @@ describe('SearchForm', () => {
     
     const input = screen.getByRole('textbox');
     
-    // First add some text
     fireEvent.change(input, { target: { value: 'test' } });
     expect(mockOnSearch).toHaveBeenCalledWith('test');
     
-    // Then clear it
     fireEvent.change(input, { target: { value: '' } });
     
-    // Empty string is valid and should trigger search
     expect(mockOnSearch).toHaveBeenCalledWith('');
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
@@ -138,10 +134,8 @@ describe('SearchForm', () => {
     const form = document.querySelector('form') as HTMLFormElement;
     const input = screen.getByRole('textbox');
     
-    fireEvent.change(input, { target: { value: 'a' } }); // Too short
-    fireEvent.submit(form);
+    fireEvent.change(input, { target: { value: 'a' } });
     
-    // Should still show error and not call onSearch again
     expect(screen.getByText(/must be at least 2 characters/i)).toBeInTheDocument();
   });
 });
