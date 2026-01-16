@@ -131,7 +131,6 @@ describe('SearchForm', () => {
     const mockOnSearch = vi.fn();
     renderWithClient(<SearchForm onSearch={mockOnSearch} />);
     
-    const form = document.querySelector('form') as HTMLFormElement;
     const input = screen.getByRole('textbox');
     
     fireEvent.change(input, { target: { value: 'a' } });
