@@ -12,18 +12,16 @@ export const SearchForm = ({ onSearch, placeholder = 'Search...' }: SearchFormPr
   const [error, setError] = useState<string | null>(null);
 
   const validateInput = (value: string): string | null => {
-    // Check for valid characters (alphanumeric, spaces, hyphens, apostrophes)
+    
     const validPattern = /^[a-zA-Z0-9\s\-']*$/;
     if (!validPattern.test(value)) {
       return 'Please use only letters, numbers, spaces, hyphens, and apostrophes';
     }
 
-    // Check minimum length if input is not empty
     if (value.trim() && value.trim().length < 2) {
       return 'Search query must be at least 2 characters';
     }
 
-    // Check maximum length
     if (value.length > 50) {
       return 'Search query must be less than 50 characters';
     }
@@ -38,7 +36,6 @@ export const SearchForm = ({ onSearch, placeholder = 'Search...' }: SearchFormPr
     const validationError = validateInput(value);
     setError(validationError);
 
-    // Only trigger search if valid or empty
     if (!validationError) {
       onSearch(value);
     }

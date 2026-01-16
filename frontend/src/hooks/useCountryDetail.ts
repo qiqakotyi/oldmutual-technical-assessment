@@ -6,7 +6,7 @@ export const useCountryDetail = (countryName: string | undefined) => {
     queryKey: ['country', countryName],
     queryFn: () => countryService.getCountryByName(countryName!),
     enabled: !!countryName,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000,
   });
 
   return { 

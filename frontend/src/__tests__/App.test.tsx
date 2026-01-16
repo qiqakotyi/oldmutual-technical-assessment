@@ -7,7 +7,6 @@ describe('App', () => {
     const { container } = render(<App />);
     expect(container).toBeTruthy();
     
-    // Wait for lazy loaded component
     await waitFor(() => {
       expect(container.querySelector('.app')).toBeInTheDocument();
     });

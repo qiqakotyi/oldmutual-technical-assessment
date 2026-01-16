@@ -5,7 +5,7 @@ export const useCountries = () => {
   const { data: countries = [], isLoading: loading, error } = useQuery({
     queryKey: ['countries'],
     queryFn: countryService.getAllCountries,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000,
   });
 
   return { 
