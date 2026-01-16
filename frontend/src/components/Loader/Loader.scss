@@ -3,8 +3,13 @@
 .loader-container {
   @include flex-center;
   flex-direction: column;
-  min-height: 400px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   gap: 20px;
+  z-index: 9999;
 
   .loader {
     width: 56px;

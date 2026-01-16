@@ -1,15 +1,23 @@
 import { describe, it, expect } from 'vitest';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import App from '../App';
 
 describe('App', () => {
-  it('should render without crashing', () => {
+  it('should render without crashing', async () => {
     const { container } = render(<App />);
     expect(container).toBeTruthy();
+    
+    // Wait for lazy loaded component
+    await waitFor(() => {
+      expect(container.querySelector('.app')).toBeInTheDocument();
+    });
   });
 
-  it('should have router setup', () => {
+  it('should have router and QueryClient setup', async () => {
     const { container } = render(<App />);
-    expect(container.querySelector('.app')).toBeInTheDocument();
+    
+    await waitFor(() => {
+      expect(container.querySelector('.app')).toBeInTheDocument();
+    });
   });
 });

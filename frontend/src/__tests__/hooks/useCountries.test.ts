@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import { useCountries } from '../../hooks/useCountries';
 import { countryService } from '../../services/countryService';
+import { createWrapper } from '../test-utils';
 
 vi.mock('../../services/countryService');
 
@@ -17,7 +18,7 @@ describe('useCountries', () => {
 
     vi.mocked(countryService.getAllCountries).mockResolvedValue(mockCountries);
 
-    const { result } = renderHook(() => useCountries());
+    const { result } = renderHook(() => useCountries(), { wrapper: createWrapper() });
 
     expect(result.current.loading).toBe(true);
     expect(result.current.countries).toEqual([]);
@@ -34,7 +35,7 @@ describe('useCountries', () => {
     const errorMessage = 'Network error';
     vi.mocked(countryService.getAllCountries).mockRejectedValue(new Error(errorMessage));
 
-    const { result } = renderHook(() => useCountries());
+    const { result } = renderHook(() => useCountries(), { wrapper: createWrapper() });
 
     await waitFor(() => {
       expect(result.current.loading).toBe(false);
@@ -47,7 +48,7 @@ describe('useCountries', () => {
   it('should handle non-Error exceptions', async () => {
     vi.mocked(countryService.getAllCountries).mockRejectedValue('String error');
 
-    const { result } = renderHook(() => useCountries());
+    const { result } = renderHook(() => useCountries(), { wrapper: createWrapper() });
 
     await waitFor(() => {
       expect(result.current.loading).toBe(false);

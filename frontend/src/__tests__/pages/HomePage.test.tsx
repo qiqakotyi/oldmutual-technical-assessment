@@ -1,8 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { screen, waitFor, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { HomePage } from '../../pages/HomePage';
 import { countryService } from '../../services/countryService';
+import { renderWithClient } from '../test-utils';
 
 const mockCountries = [
   { name: 'South Africa', flag: 'https://flag.url/za.svg', population: 59000000, capital: 'Pretoria' },
@@ -30,7 +31,7 @@ describe('HomePage', () => {
       () => new Promise(() => {}) // Never resolves
     );
 
-    render(
+    renderWithClient(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>
@@ -44,7 +45,7 @@ describe('HomePage', () => {
   it('should display countries after loading', async () => {
     vi.spyOn(countryService, 'getAllCountries').mockResolvedValue(mockCountries);
 
-    render(
+    renderWithClient(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>
@@ -61,7 +62,7 @@ describe('HomePage', () => {
       new Error('Network error')
     );
 
-    render(
+    renderWithClient(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>
@@ -75,7 +76,7 @@ describe('HomePage', () => {
   it('should display correct number of countries', async () => {
     vi.spyOn(countryService, 'getAllCountries').mockResolvedValue(mockCountries);
 
-    render(
+    renderWithClient(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>
@@ -90,7 +91,7 @@ describe('HomePage', () => {
   it('should filter countries by search query', async () => {
     vi.spyOn(countryService, 'getAllCountries').mockResolvedValue(mockCountries);
 
-    render(
+    renderWithClient(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>
@@ -112,7 +113,7 @@ describe('HomePage', () => {
   it('should show no results message when search has no matches', async () => {
     vi.spyOn(countryService, 'getAllCountries').mockResolvedValue(mockCountries);
 
-    render(
+    renderWithClient(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>
@@ -134,7 +135,7 @@ describe('HomePage', () => {
     const manyCountries = generateManyCountries(30);
     vi.spyOn(countryService, 'getAllCountries').mockResolvedValue(manyCountries);
 
-    render(
+    renderWithClient(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>
@@ -152,7 +153,7 @@ describe('HomePage', () => {
     const manyCountries = generateManyCountries(30);
     vi.spyOn(countryService, 'getAllCountries').mockResolvedValue(manyCountries);
 
-    render(
+    renderWithClient(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>
@@ -175,7 +176,7 @@ describe('HomePage', () => {
     const manyCountries = generateManyCountries(30);
     vi.spyOn(countryService, 'getAllCountries').mockResolvedValue(manyCountries);
 
-    render(
+    renderWithClient(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>
@@ -197,7 +198,7 @@ describe('HomePage', () => {
     const manyCountries = generateManyCountries(30);
     vi.spyOn(countryService, 'getAllCountries').mockResolvedValue(manyCountries);
 
-    render(
+    renderWithClient(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>
@@ -215,7 +216,7 @@ describe('HomePage', () => {
     const manyCountries = generateManyCountries(30);
     vi.spyOn(countryService, 'getAllCountries').mockResolvedValue(manyCountries);
 
-    render(
+    renderWithClient(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>
@@ -238,7 +239,7 @@ describe('HomePage', () => {
     const manyCountries = generateManyCountries(30);
     vi.spyOn(countryService, 'getAllCountries').mockResolvedValue(manyCountries);
 
-    render(
+    renderWithClient(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>

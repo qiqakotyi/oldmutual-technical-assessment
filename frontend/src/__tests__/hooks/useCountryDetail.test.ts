@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import { useCountryDetail } from '../../hooks/useCountryDetail';
 import { countryService } from '../../services/countryService';
+import { createWrapper } from '../test-utils';
 
 vi.mock('../../services/countryService');
 
@@ -21,7 +22,7 @@ describe('useCountryDetail', () => {
 
     vi.mocked(countryService.getCountryByName).mockResolvedValue(mockCountry);
 
-    const { result } = renderHook(() => useCountryDetail('Test'));
+    const { result } = renderHook(() => useCountryDetail('Test'), { wrapper: createWrapper() });
 
     expect(result.current.loading).toBe(true);
     expect(result.current.country).toBeNull();
@@ -38,7 +39,7 @@ describe('useCountryDetail', () => {
     const errorMessage = 'Not found';
     vi.mocked(countryService.getCountryByName).mockRejectedValue(new Error(errorMessage));
 
-    const { result } = renderHook(() => useCountryDetail('Test'));
+    const { result } = renderHook(() => useCountryDetail('Test'), { wrapper: createWrapper() });
 
     await waitFor(() => {
       expect(result.current.loading).toBe(false);
@@ -51,7 +52,7 @@ describe('useCountryDetail', () => {
   it('should handle non-Error exceptions', async () => {
     vi.mocked(countryService.getCountryByName).mockRejectedValue('String error');
 
-    const { result } = renderHook(() => useCountryDetail('Test'));
+    const { result } = renderHook(() => useCountryDetail('Test'), { wrapper: createWrapper() });
 
     await waitFor(() => {
       expect(result.current.loading).toBe(false);
@@ -62,10 +63,10 @@ describe('useCountryDetail', () => {
   });
 
   it('should not fetch when country name is undefined', async () => {
-    const { result } = renderHook(() => useCountryDetail(undefined));
+    const { result } = renderHook(() => useCountryDetail(undefined), { wrapper: createWrapper() });
 
-    // Should remain in initial loading state since no fetch is triggered
-    expect(result.current.loading).toBe(true);
+    // Should not start loading since query is disabled
+    expect(result.current.loading).toBe(false);
     expect(result.current.country).toBeNull();
     expect(result.current.error).toBeNull();
     expect(countryService.getCountryByName).not.toHaveBeenCalled();

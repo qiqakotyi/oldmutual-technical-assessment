@@ -1,28 +1,16 @@
-import { useState, useEffect } from 'react';
-import type { Country } from '../types/Country';
+import { useQuery } from '@tanstack/react-query';
 import { countryService } from '../services/countryService';
 
 export const useCountries = () => {
-  const [countries, setCountries] = useState<Country[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data: countries = [], isLoading: loading, error } = useQuery({
+    queryKey: ['countries'],
+    queryFn: countryService.getAllCountries,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
 
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        setLoading(true);
-        const data = await countryService.getAllCountries();
-        setCountries(data);
-        setError(null);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch countries');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCountries();
-  }, []);
-
-  return { countries, loading, error };
+  return { 
+    countries, 
+    loading, 
+    error: error ? (error instanceof Error ? error.message : 'Failed to fetch countries') : null 
+  };
 };
