@@ -65,7 +65,6 @@ describe('useCountryDetail', () => {
   it('should not fetch when country name is undefined', async () => {
     const { result } = renderHook(() => useCountryDetail(undefined), { wrapper: createWrapper() });
 
-    // Should not start loading since query is disabled
     expect(result.current.loading).toBe(false);
     expect(result.current.country).toBeNull();
     expect(result.current.error).toBeNull();

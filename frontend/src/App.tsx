@@ -5,12 +5,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Loader } from './components/Loader';
 import './App.scss';
 
-// Lazy load pages
 const HomePage = lazy(() => import('./pages/HomePage/index').then(module => ({ default: module.HomePage })));
 const DetailPage = lazy(() => import('./pages/DetailPage/index').then(module => ({ default: module.DetailPage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/index').then(module => ({ default: module.NotFoundPage })));
 
-// Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
