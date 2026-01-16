@@ -3,6 +3,7 @@ import { useCountries } from '../../hooks/useCountries';
 import { CountryCard } from '../../components/CountryCard';
 import { SkeletonGrid } from '../../components/SkeletonCard';
 import { ErrorMessage } from '../../components/ErrorMessage';
+import { SearchForm } from '../../components/SearchForm';
 import './HomePage.scss';
 
 const ITEMS_PER_PAGE = 24;
@@ -26,8 +27,8 @@ export const HomePage = () => {
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const paginatedCountries = filteredCountries.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
     setCurrentPage(1);
   };
 
@@ -48,15 +49,10 @@ export const HomePage = () => {
       </header>
 
       {!loading && (
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search by country name or capital..."
-            value={searchQuery}
-            onChange={handleSearch}
-          />
-          <span className="search-icon">🔍</span>
-        </div>
+        <SearchForm 
+          onSearch={handleSearch}
+          placeholder="Search by country name or capital..."
+        />
       )}
       
       {loading ? (
